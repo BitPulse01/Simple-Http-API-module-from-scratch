@@ -5,7 +5,7 @@ from os import stat
 import socket
 
 
-class __request:
+class request:
     def __init__(self, request: bytes, Endpoints: list[str], endpoint: dict[str, str]) -> None:
         request = request.decode()
         self.endpoints_dict = endpoint
@@ -61,7 +61,7 @@ class API:
             
     def start(self, connection: socket.socket):
         REQUEST: bytes = connection.recv(1048)
-        REQUEST_HANDELER = __request(REQUEST, self.endpoints, self.endpoints_data)
+        REQUEST_HANDELER = request(REQUEST, self.endpoints, self.endpoints_data)
         MESSAGE: bytes = REQUEST_HANDELER.handel_endpoints()
         
         print(Fore.MAGENTA + "---------------------")
